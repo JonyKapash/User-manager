@@ -19,9 +19,8 @@ const connectToMongoDB = async () => {
 	await mongo().then(mongoose => {
 		try {
 			console.log("Connected to MongoDB");
-		} finally {
-            // finally is called after the try block is finished or an error is thrown
-			mongoose.connection.close();
+		} catch (error) {
+			console.log(`Error connecting to MongoDB, Error: ${error}`);
 		}
 	});
 };

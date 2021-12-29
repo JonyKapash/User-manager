@@ -1,28 +1,34 @@
 const express = require("express");
 const router = express.Router();
 
-const UserModel = require("../schemas/user-schema");
+const UserModel = require("../models/User");
 
-router.get("/", (req, res) => {
-	res.send("User list");
-});
-
-router.get("/new", async (req, res) => {
-	const newUser = new UserModel({
-		name: "John",
-		city: "New York",
-		email: "john@gmail.com",
-		picture: "https://randomuser.me/api/portraits/",
-	});
-
+router.get("/", async (req, res) => {
 	try {
-		await newUser.save();
+		const allUsers = await UserModel.find({}).limit(2);
+		console.log(allUsers);
+		res.send("Get User list");
 	} catch (error) {
 		console.log(error);
 	}
-
-	res.send("New user");
 });
+
+// router.get("/new", async (req, res) => {
+// 	const newUser = new UserModel({
+// 		name: "John",
+// 		city: "New York",
+// 		email: "john@gmail.com",
+// 		picture: "https://randomuser.me/api/portraits/",
+// 	});
+
+// 	try {
+// 		await newUser.save();
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+
+// 	res.send("New user");
+// });
 
 router.post("/", (req, res) => {
 	res.send("Create new user");
