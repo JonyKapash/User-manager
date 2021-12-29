@@ -1,11 +1,26 @@
 const express = require("express");
 const router = express.Router();
 
+const UserModel = require("../schemas/user-schema");
+
 router.get("/", (req, res) => {
 	res.send("User list");
 });
 
-router.get("/new", (req, res) => {
+router.get("/new", async (req, res) => {
+	const newUser = new UserModel({
+		name: "John",
+		city: "New York",
+		email: "john@gmail.com",
+		picture: "https://randomuser.me/api/portraits/",
+	});
+
+	try {
+		await newUser.save();
+	} catch (error) {
+		console.log(error);
+	}
+
 	res.send("New user");
 });
 
