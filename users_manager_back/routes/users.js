@@ -5,9 +5,9 @@ const UserModel = require("../models/User");
 
 router.get("/", async (req, res) => {
 	try {
-		const allUsers = await UserModel.find({}).limit(2);
-		console.log(allUsers);
-		res.send("Get User list");
+		const allUsers = await UserModel.find({}).limit(100);
+		console.log(allUsers[0]);
+		res.send(allUsers);
 	} catch (error) {
 		console.log(error);
 	}

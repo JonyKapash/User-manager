@@ -1,10 +1,11 @@
 const mongo = require("./mongo/mongo");
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 //this will allow us to receive information from the client
 app.use(express.json());
-
+app.use(cors());
 //route for users, used to get/show all users and currently the home page
 app.use('/', require("./routes/users"))
 
