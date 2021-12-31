@@ -89,6 +89,19 @@ router.delete("/deleteUser/:id", async (req, res) => {
 });
 
 
+router.get("/searchUser/:data", async (req, res) => {
+	try {
+		const userData = req.params.name;
+		const result = await UserModel.find(userData).limit(100);
+		return res.send(result);
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+
+
+
 //here we have one route that mach /:id and we are chaining 3 different requests to make the code cleaner
 // router
 // 	.route("/:id")

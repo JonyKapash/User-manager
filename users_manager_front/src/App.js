@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
 import UserModal from "./views/components/UserModal";
-import SearchBar from "./views/components/SearchBar";
+import AddNewUser from "./views/components/AddNewUser";
 import UserTable from "./views/components/UserTable";
+import SearchBar from "./views/components/SearchBar";
 
 function App() {
 	
@@ -10,7 +11,8 @@ function App() {
 		<div className="App">
 			<h1>User Management</h1>
 			<UserModal/>
-			<SearchBar />
+			<SearchBar/>
+			<AddNewUser />
 			<UserTable />
 		</div>
 	);

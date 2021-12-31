@@ -54,7 +54,7 @@ function UserTableBody({
 				<tbody>
 					<tr>
 						<th scope="row">
-							<img src={picture} alt="pic" />
+							<img className='rounded-circle' src={picture} alt="pic" />
 							{` ${firstName}  ${lastName}`}
 						</th>
 						<td>{email}</td>
@@ -124,7 +124,7 @@ function UserTableBody({
 							</Modal>
 						</td>
 						<td>
-							<Button onClick={handleShowDelete} className="btn btn-warning">
+							<Button onClick={handleShowDelete} className="btn btn-danger">
 								Delete
 							</Button>
 							<Modal show={showDelete} onHide={handleCloseDelete}>
