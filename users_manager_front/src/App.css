@@ -19,3 +19,12 @@
 .pagination-active a {
 	background-color: #f7b100;
 }
+
+.pagination-brake a {
+    cursor: default;
+    border: none;
+}
+
+.pagination-brake a:hover {
+    background-color: white;
+}

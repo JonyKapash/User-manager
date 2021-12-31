@@ -15,7 +15,7 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
-
+//todo: check with youtube in the connection to the database video
 const connectToMongoDB = async () => {
 	await mongo().then(mongoose => {
 		try {

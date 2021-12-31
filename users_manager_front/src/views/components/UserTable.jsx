@@ -48,6 +48,7 @@ function UserTable() {
 				previousLabel={"<"}
 				nextLabel={">"}
 				breakLabel={"..."}
+				breakClassName={"pagination-brake"}
 				pageCount={pageCount}
 				onPageChange= {(e) => setPageNumber(e.selected)}
 				containerClassName={"pagination"}
