@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import Axios from "axios";
 
 function UserTableBody({
+	userId,
 	picture,
 	firstName,
 	lastName,
@@ -20,6 +22,7 @@ function UserTableBody({
 	const handleShowDelete = () => setShowDelete(true);
 
 	const [updatedUser, setUpdatedUser] = useState({
+		id: userId,
 		firstName: firstName,
 		lastName: lastName,
 		email: email,
@@ -27,17 +30,22 @@ function UserTableBody({
 		permission: permission,
 	});
 
-	const handleChange = e => {		
+	const handleChange = e => {
 		setUpdatedUser({
 			...updatedUser,
 			[e.target.name]: e.target.value,
-		});		
+		});
 	};
 
-	const updateUser = e => {
-		e.preventDefault();
+	const updateUserInMongoDB = () => {
 		console.log(updatedUser);
+		Axios.put("http://localhost:4000/updateUser", updatedUser);
 		handleClose();
+	};
+
+	const deleteUserFromMongoDB = () => {
+		Axios.delete(`http://localhost:4000/deleteUser/${userId}`);
+		handleCloseDelete()
 	};
 
 	return (
@@ -100,13 +108,16 @@ function UserTableBody({
 												name="permission"
 												value={permission}
 												type="text"
-												
 											/>
 										</Form.Group>
 									</Form>
 								</Modal.Body>
 								<Modal.Footer>
-									<Button type="submit" variant="warning" onClick={updateUser}>
+									<Button
+										type="submit"
+										variant="warning"
+										onClick={updateUserInMongoDB}
+									>
 										Submit
 									</Button>
 								</Modal.Footer>
@@ -124,7 +135,7 @@ function UserTableBody({
 								</Modal.Header>
 
 								<Modal.Footer>
-									<Button variant="warning" onClick={handleCloseDelete}>
+									<Button variant="warning" onClick={deleteUserFromMongoDB}>
 										Yes
 									</Button>
 									<Button variant="warning" onClick={handleCloseDelete}>

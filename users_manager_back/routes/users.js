@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
 		const allUsers = await UserModel.find({}).limit(100);
 		res.send(allUsers);
 	} catch (error) {
+		res.send(error);
 		console.log(error);
 	}
 });
@@ -15,7 +16,7 @@ router.get("/", async (req, res) => {
 router.post("/addNewUser", async (req, res) => {
 	try {
 		const user = req.body;
-		const { firstName, lastName, email, country} = user;
+		const { firstName, lastName, email, country } = user;
 		const newUser = new UserModel({
 			name: {
 				title: null,
@@ -58,14 +59,34 @@ router.post("/addNewUser", async (req, res) => {
 	}
 });
 
+//todo: check for the server error after updating the user
+router.put("/updateUser", async (req, res) => {
+	try {
+		const user = req.body;
+		const { id, firstName, lastName, email, country } = user;
 
+		await UserModel.findById(id, (error, updatedUser) => {
+			updatedUser.name.first = firstName;
+			updatedUser.name.last = lastName;
+			updatedUser.location.country = country;
+			updatedUser.email = email;
+			updatedUser.save();
+		});
+		return res.send("User updated successfully");
+	} catch (error) {
+		console.log(error);
+	}
+});
 
-
-
-
-
-
-
+router.delete("/deleteUser/:id", async (req, res) => {
+	try {
+		const userId = req.params.id;
+		await UserModel.findByIdAndDelete(userId).exec();
+		return res.send("User deleted successfully");
+	} catch (error) {
+		console.log(error);
+	}
+});
 
 
 //here we have one route that mach /:id and we are chaining 3 different requests to make the code cleaner
@@ -82,8 +103,6 @@ router.post("/addNewUser", async (req, res) => {
 // 	.delete((req, res) => {
 // 		res.send(`Delete user with ID ${req.params.id}`);
 // 	});
-
-
 
 // //whenever we go to a route that has an "id" param run this code
 // router.param("id", (req, res, next, id) => {

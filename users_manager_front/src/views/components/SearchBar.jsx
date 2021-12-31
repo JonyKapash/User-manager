@@ -23,7 +23,7 @@ function SearchBar() {
 		});
 	};
 
-	const addNewUser = e => {
+	const addNewUser = () => {
 		console.log(newUser);
 		Axios.post("http://localhost:4000/addNewUser", newUser);
 		handleClose();

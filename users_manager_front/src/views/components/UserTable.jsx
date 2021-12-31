@@ -28,6 +28,7 @@ function UserTable() {
 			.map((user, index) => {
 				return (
 					<UserTableBody
+						userId={user._id}
 						key={index}
 						picture={user.picture.thumbnail}
 						firstName={user.name.first}
