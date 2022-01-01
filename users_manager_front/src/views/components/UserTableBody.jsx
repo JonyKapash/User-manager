@@ -49,7 +49,7 @@ function UserTableBody({
 	};
 
 	return (
-		<div>
+		<div className='table-container' >
 			<table className="table">
 				<tbody>
 					<tr>

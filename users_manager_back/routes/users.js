@@ -88,39 +88,21 @@ router.delete("/deleteUser/:id", async (req, res) => {
 	}
 });
 
-
 router.get("/searchUser/:data", async (req, res) => {
 	try {
-		const userData = req.params.name;
-		const result = await UserModel.find(userData).limit(100);
-		return res.send(result);
+		const userData = req.params.data;
+		const results = await UserModel.find({
+			$or: [
+				{ "name.first": `${userData}` },
+				{ "name.last": `${userData}` },
+				{ email: userData },
+				{ "location.country": `${userData}` },
+			],
+		});
+		return res.send(results);
 	} catch (error) {
 		console.log(error);
 	}
 });
-
-
-
-
-//here we have one route that mach /:id and we are chaining 3 different requests to make the code cleaner
-// router
-// 	.route("/:id")
-// 	.get((req, res) => {
-// 		//we are pulling the id from the url params
-// 		console.log(req.user);
-// 		res.send(`Get user with ID ${req.params.id}`);
-// 	})
-// 	.put((req, res) => {
-// 		res.send(`Update user with ID ${req.params.id}`);
-// 	})
-// 	.delete((req, res) => {
-// 		res.send(`Delete user with ID ${req.params.id}`);
-// 	});
-
-// //whenever we go to a route that has an "id" param run this code
-// router.param("id", (req, res, next, id) => {
-// 	req.user = users[id];
-// 	next();
-// });
 
 module.exports = router;

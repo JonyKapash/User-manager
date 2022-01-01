@@ -41,6 +41,7 @@ function UserTable() {
 			});
 
 	const pageCount = Math.ceil(usersList.length / usersPerPage);
+	
 	return (
 		<div>
 			<UserTableHead />
