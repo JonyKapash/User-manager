@@ -1,8 +1,19 @@
 import React from "react";
+import AddNewUser from "./AddNewUser";
 
 function UserTableHead() {
 	return (
 		<div>
+			<div className="table-title">
+				<div className="row">
+					<div className="col-sm-6">
+						<h2>User Manager</h2>
+					</div>
+					<div className="col-sm-6">
+						<AddNewUser />
+					</div>
+				</div>
+			</div>
 			<table className="table">
 				<thead>
 					<tr>

@@ -1,6 +1,41 @@
+.table-title {
+	background: #0553b3;
+	color: #fff;
+	padding: 16px 30px;
+}
+
+.table-title h2 {
+	margin: 3px;
+	font-size: 24px;
+}
+
+.searchBar {
+	max-width: 372px;
+	position: relative;
+	top: 67px;
+	left: 888px;
+}
+
+.table-title .btn {
+	color: #fff;
+	float: right;
+	font-size: 13px;
+	border: none;
+	min-width: 50px;
+	border-radius: 5px;
+	border: none;
+	margin-left: 10px;
+}
+
+.add-user-button {
+	position: relative;
+	left: 475px;
+}
+
 .pagination {
 	width: 80%;
 	height: 40px;
+	margin-right: 10px;
 }
 
 .pagination a {
@@ -21,10 +56,10 @@
 }
 
 .pagination-brake a {
-    cursor: default;
-    border: none;
+	cursor: default;
+	border: none;
 }
 
 .pagination-brake a:hover {
-    background-color: white;
+	background-color: white;
 }

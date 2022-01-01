@@ -27,21 +27,23 @@ function UserTable() {
 			.slice(pagesVisited, pagesVisited + usersPerPage)
 			.map((user, index) => {
 				return (
-					<UserTableBody
-						userId={user._id}
-						key={index}
-						picture={user.picture.thumbnail}
-						firstName={user.name.first}
-						lastName={user.name.last}
-						email={user.email}
-						country={user.location.country}
-						registered={user.registered.date}
-					/>
+					<>
+						<UserTableBody
+							userId={user._id}
+							key={index}
+							picture={user.picture.thumbnail}
+							firstName={user.name.first}
+							lastName={user.name.last}
+							email={user.email}
+							country={user.location.country}
+							registered={user.registered.date}
+						/>
+					</>
 				);
 			});
 
 	const pageCount = Math.ceil(usersList.length / usersPerPage);
-	
+
 	return (
 		<div>
 			<UserTableHead />
@@ -52,7 +54,7 @@ function UserTable() {
 				breakLabel={"..."}
 				breakClassName={"pagination-brake"}
 				pageCount={pageCount}
-				onPageChange= {(e) => setPageNumber(e.selected)}
+				onPageChange={e => setPageNumber(e.selected)}
 				containerClassName={"pagination"}
 				activeClassName={"pagination-active"}
 			/>

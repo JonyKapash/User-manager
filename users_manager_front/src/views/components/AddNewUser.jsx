@@ -30,9 +30,9 @@ function AddNewUser() {
 
 	return (
 		<>
-			<div className="input-group mb-3 p-2">
+			<div className="input-group add-user-button">
 				<Button variant="success" onClick={handleShow}>
-					+ New User
+					Add New User
 				</Button>
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>

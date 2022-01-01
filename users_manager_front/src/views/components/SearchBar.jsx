@@ -16,7 +16,7 @@ function SearchBar() {
 	};
 
 	return (
-		<div>
+		<div className = "searchBar">
 			<Form onSubmit={searchInMongoDB}>
 				<Form.Group className="mb-3">
 					<Form.Control
