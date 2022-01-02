@@ -36,7 +36,11 @@ function UserTable() {
 							lastName={user.name.last}
 							email={user.email}
 							country={user.location.country}
-							registered={user.registered.date}
+							registered={user.registered.date.toLocaleString("en-US", {
+								day: "numeric", // numeric, 2-digit
+								year: "numeric", // numeric, 2-digit
+								month: "long", // numeric, 2-digit, long, short, narrow
+							})}
 						/>
 					</>
 				);
@@ -46,13 +50,15 @@ function UserTable() {
 
 	return (
 		<div>
-			<UserTableHead />
-			{displayUsers}
+			<table className="table table-striped table-hover table-bordered table-responsive">
+				<UserTableHead />
+				<tbody>{displayUsers}</tbody>
+			</table>
 			<ReactPaginate
 				previousLabel={"<"}
 				nextLabel={">"}
 				breakLabel={"..."}
-				breakClassName={"pagination-brake"}
+				marginPagesDisplayed={3}
 				pageCount={pageCount}
 				onPageChange={e => setPageNumber(e.selected)}
 				containerClassName={"pagination"}

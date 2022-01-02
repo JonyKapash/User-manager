@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 import UserTable from "./views/components/UserTable";
-import SearchBar from "./views/components/SearchBar";
+import UserTableHeader from "./views/components/UserTableHeader";
 
 function App() {
 	return (
 		<div className="App">
-			<div className="container">		
-				<SearchBar />
+			<div className="container">
+				<UserTableHeader />
 				<UserTable />
 			</div>
 		</div>

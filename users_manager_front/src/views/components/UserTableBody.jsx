@@ -49,103 +49,99 @@ function UserTableBody({
 	};
 
 	return (
-		<table className="table table-striped table-hover">
-			<tbody>
-				<tr>
-					<th scope="row">
-						<img className="rounded-circle" src={picture} alt="pic" />
-						{` ${firstName}  ${lastName}`}
-					</th>
-					<td>{email}</td>
-					<td>{country}</td>
-					<td>{registered}</td>
-					<td>{permission}</td>
-					<td>
-						<Button onClick={handleShow} className="btn btn-warning">
-							Modify
+		<tr>
+			<th scope="row">
+				<img className="rounded-circle" src={picture} alt="pic" />
+				{` ${firstName}  ${lastName}`}
+			</th>
+			<td>{email}</td>
+			<td>{country}</td>
+			<td>{registered}</td>
+			<td>{permission}</td>
+			<td>
+				<Button onClick={handleShow} className="btn btn-warning">
+					Modify
+				</Button>
+				<Modal show={show} onHide={handleClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>Modify User</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<Form>
+							<Form.Group
+								className="mb-3"
+								controlId="exampleForm.ControlInput1"
+							>
+								<Form.Label>First Name</Form.Label>
+								<Form.Control
+									name="firstName"
+									type="text"
+									defaultValue={firstName}
+									onChange={handleChange}
+								/>
+								<Form.Label>Last Name</Form.Label>
+								<Form.Control
+									name="lastName"
+									type="text"
+									defaultValue={lastName}
+									onChange={handleChange}
+								/>
+								<Form.Label>Email address</Form.Label>
+								<Form.Control
+									name="email"
+									type="email"
+									defaultValue={email}
+									onChange={handleChange}
+								/>
+								<Form.Label>Location</Form.Label>
+								<Form.Control
+									name="country"
+									type="text"
+									defaultValue={country}
+									onChange={handleChange}
+								/>
+								<Form.Label>Permission</Form.Label>
+								<Form.Control
+									name="permission"
+									value={permission}
+									type="text"
+								/>
+							</Form.Group>
+						</Form>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button
+							type="submit"
+							variant="warning"
+							onClick={updateUserInMongoDB}
+						>
+							Submit
 						</Button>
-						<Modal show={show} onHide={handleClose}>
-							<Modal.Header closeButton>
-								<Modal.Title>Modify User</Modal.Title>
-							</Modal.Header>
-							<Modal.Body>
-								<Form>
-									<Form.Group
-										className="mb-3"
-										controlId="exampleForm.ControlInput1"
-									>
-										<Form.Label>First Name</Form.Label>
-										<Form.Control
-											name="firstName"
-											type="text"
-											defaultValue={firstName}
-											onChange={handleChange}
-										/>
-										<Form.Label>Last Name</Form.Label>
-										<Form.Control
-											name="lastName"
-											type="text"
-											defaultValue={lastName}
-											onChange={handleChange}
-										/>
-										<Form.Label>Email address</Form.Label>
-										<Form.Control
-											name="email"
-											type="email"
-											defaultValue={email}
-											onChange={handleChange}
-										/>
-										<Form.Label>Location</Form.Label>
-										<Form.Control
-											name="country"
-											type="text"
-											defaultValue={country}
-											onChange={handleChange}
-										/>
-										<Form.Label>Permission</Form.Label>
-										<Form.Control
-											name="permission"
-											value={permission}
-											type="text"
-										/>
-									</Form.Group>
-								</Form>
-							</Modal.Body>
-							<Modal.Footer>
-								<Button
-									type="submit"
-									variant="warning"
-									onClick={updateUserInMongoDB}
-								>
-									Submit
-								</Button>
-							</Modal.Footer>
-						</Modal>
-					</td>
-					<td>
-						<Button onClick={handleShowDelete} className="btn btn-danger">
-							Delete
-						</Button>
-						<Modal show={showDelete} onHide={handleCloseDelete}>
-							<Modal.Header closeButton>
-								<Modal.Title>
-									Are you sure you want to delete this user?
-								</Modal.Title>
-							</Modal.Header>
+					</Modal.Footer>
+				</Modal>
+			</td>
+			<td>
+				<Button onClick={handleShowDelete} className="btn btn-danger">
+					Delete
+				</Button>
+				<Modal show={showDelete} onHide={handleCloseDelete}>
+					<Modal.Header closeButton>
+						<Modal.Title>
+							Are you sure you want to delete this user?
+						</Modal.Title>
+					</Modal.Header>
 
-							<Modal.Footer>
-								<Button variant="warning" onClick={deleteUserFromMongoDB}>
-									Yes
-								</Button>
-								<Button variant="warning" onClick={handleCloseDelete}>
-									No
-								</Button>
-							</Modal.Footer>
-						</Modal>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+					<Modal.Footer>
+						<Button variant="warning" onClick={deleteUserFromMongoDB}>
+							Yes
+						</Button>
+						<Button variant="warning" onClick={handleCloseDelete}>
+							No
+						</Button>
+					</Modal.Footer>
+				</Modal>
+			</td>
+		</tr>
 	);
 }
 

@@ -1,41 +1,34 @@
-.table-title {
-	background: #0553b3;
+.title {
+	background: #0853ae;
 	color: #fff;
 	padding: 16px 30px;
+	margin-top: 10px;
+	border-radius: 5px;
 }
 
-.table-title h2 {
-	margin: 3px;
-	font-size: 24px;
+.title h2 {
+	margin: 0px;
+	
+}
+
+.title-buttons-container {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .searchBar {
-	max-width: 372px;
-	position: relative;
-	top: 67px;
-	left: 888px;
-}
-
-.table-title .btn {
-	color: #fff;
-	float: right;
-	font-size: 13px;
-	border: none;
-	min-width: 50px;
-	border-radius: 5px;
-	border: none;
-	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .add-user-button {
-	position: relative;
-	left: 475px;
+	font-size: 13px;
 }
 
 .pagination {
 	width: 80%;
 	height: 40px;
 	margin-right: 10px;
+	font-size: 12px;
 }
 
 .pagination a {
