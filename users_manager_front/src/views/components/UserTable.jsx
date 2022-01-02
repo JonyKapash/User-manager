@@ -1,21 +1,12 @@
-import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useCon } from "../../context/AppContext";
 import UserTableBody from "./UserTableBody";
 import UserTableHead from "./UserTableHead";
 import ReactPaginate from "react-paginate";
 
 function UserTable() {
-	const [usersList, setUsersList] = useState({});
+	const { usersList } = useCon();
 	const [pageNumber, setPageNumber] = useState(0);
-
-	useEffect(() => {
-		const GetAllUsers = async () => {
-			const response = await Axios.get("http://localhost:4000/");
-			setUsersList(response.data);
-		};
-		GetAllUsers();
-	}, []);
-
 	const usersPerPage = 9;
 	const pagesVisited = pageNumber * usersPerPage;
 
@@ -29,8 +20,8 @@ function UserTable() {
 				return (
 					<>
 						<UserTableBody
-							userId={user._id}
 							key={index}
+							userId={user._id}
 							picture={user.picture.thumbnail}
 							firstName={user.name.first}
 							lastName={user.name.last}
@@ -51,7 +42,9 @@ function UserTable() {
 	return (
 		<div>
 			<table className="table table-striped table-hover table-bordered table-responsive">
-				<UserTableHead />
+				<thead>
+					<UserTableHead />
+				</thead>
 				<tbody>{displayUsers}</tbody>
 			</table>
 			<ReactPaginate

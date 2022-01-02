@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Axios from "axios";
+import { useCon } from "../../context/AppContext";
 
 function UserTableBody({
 	userId,
@@ -14,6 +15,7 @@ function UserTableBody({
 	const [show, setShow] = useState(false);
 	const [showDelete, setShowDelete] = useState(false);
 	const [permission, setPermission] = useState("User");
+	const { setUsersList } = useCon();
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -38,13 +40,14 @@ function UserTableBody({
 	};
 
 	const updateUserInMongoDB = () => {
-		console.log(updatedUser);
-		Axios.put("http://localhost:4000/updateUser", updatedUser);
+		const result = Axios.put("http://localhost:4000/updateUser", updatedUser);
+		setUsersList(result);
 		handleClose();
 	};
 
 	const deleteUserFromMongoDB = () => {
-		Axios.delete(`http://localhost:4000/deleteUser/${userId}`);
+		const result = Axios.delete(`http://localhost:4000/deleteUser/${userId}`);
+		setUsersList(result);
 		handleCloseDelete();
 	};
 
@@ -103,7 +106,7 @@ function UserTableBody({
 								<Form.Label>Permission</Form.Label>
 								<Form.Control
 									name="permission"
-									value={permission}
+									defaultValue={permission}
 									type="text"
 								/>
 							</Form.Group>

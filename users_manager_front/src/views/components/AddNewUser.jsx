@@ -4,7 +4,6 @@ import Axios from "axios";
 
 function AddNewUser() {
 	const [show, setShow] = useState(false);
-	const [permission, setPermission] = useState("User");
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
@@ -13,7 +12,7 @@ function AddNewUser() {
 		lastName: "",
 		email: "",
 		country: "",
-		permission: permission,
+		permission: "User",
 	});
 
 	const handleChange = e => {
@@ -69,11 +68,7 @@ function AddNewUser() {
 									onChange={handleChange}
 								/>
 								<Form.Label>Permission</Form.Label>
-								<Form.Control
-									name="permission"
-									value={permission}
-									type="text"
-								/>
+								<Form.Control name="permission" type="text" />
 							</Form.Group>
 						</Form>
 					</Modal.Body>

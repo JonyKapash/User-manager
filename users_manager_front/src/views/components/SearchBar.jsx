@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { Form } from "react-bootstrap";
+import { useCon } from "../../context/AppContext";
 
 function SearchBar() {
 	const [searchData, setSearchData] = useState("");
-	const [searchResult, setSearchResult] = useState([]);
+	const { setUsersList } = useCon();
 
 	const searchInMongoDB = async e => {
 		e.preventDefault();
-		const searchResultsFromMongDB = await Axios.get(
+		const result = await Axios.get(
 			`http://localhost:4000/searchUser/${searchData}`
 		);
-		setSearchResult(searchResultsFromMongDB.data);
-        console.log(searchResultsFromMongDB.data);
+		if (result.data.length === 0) {
+			alert("Sorry no user found");
+		} else {
+			setUsersList(result.data);
+		}
 	};
 
 	return (
-		<div className = "searchBar">
+		<div className="searchBar">
 			<Form onSubmit={searchInMongoDB}>
 				<Form.Group className="mb-3">
 					<Form.Control
-                        placeholder="Search"
+						placeholder="Search"
 						name="searchBar"
 						type="text"
 						onChange={e => setSearchData(e.target.value)}
